@@ -154,7 +154,7 @@ const ImageItem = ({
           <Image
             source={imageSrc}
             style={imageStylesWithOpacity}
-            onLoad={() => setLoaded(true)}
+            // onLoad={() => setLoaded(true)}
             CustomImageComponent={CustomImageComponent}
           />
         </TouchableWithoutFeedback>

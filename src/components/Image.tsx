@@ -1,5 +1,6 @@
 import { Animated, ImageProps as RNImageProps } from 'react-native';
 import { ComponentType } from 'react';
+import AnimatedProps = Animated.AnimatedProps;
 
 type ImageProps = Omit<RNImageProps, 'style'> & {
   CustomImageComponent?: ComponentType;

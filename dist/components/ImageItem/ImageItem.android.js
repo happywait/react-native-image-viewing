@@ -10,7 +10,6 @@ import { Animated, ScrollView, Dimensions, StyleSheet, } from 'react-native';
 import useImageDimensions from '../../hooks/useImageDimensions';
 import usePanResponder from '../../hooks/usePanResponder';
 import { getImageStyles, getImageTransform } from '../../utils';
-import { ImageLoading } from './ImageLoading';
 import Image from '../Image';
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.75;
@@ -49,11 +48,11 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
         doubleTapDelay,
     });
     const imagesStyles = getImageStyles(imageDimensions, translateValue, scaleValue);
-    const imageOpacity = scrollValueY.interpolate({
-        inputRange: [-SWIPE_CLOSE_OFFSET, 0, SWIPE_CLOSE_OFFSET],
-        outputRange: [0.7, 1, 0.7],
-    });
-    const imageStylesWithOpacity = { ...imagesStyles, opacity: imageOpacity };
+    // const imageOpacity = scrollValueY.interpolate({
+    //   inputRange: [-SWIPE_CLOSE_OFFSET, 0, SWIPE_CLOSE_OFFSET],
+    //   outputRange: [0.7, 1, 0.7],
+    // });
+    // const imageStylesWithOpacity = { ...imagesStyles, opacity: imageOpacity };
     const onScrollEndDrag = ({ nativeEvent, }) => {
         var _a, _b, _c, _d;
         const velocityY = (_b = (_a = nativeEvent === null || nativeEvent === void 0 ? void 0 : nativeEvent.velocity) === null || _a === void 0 ? void 0 : _a.y) !== null && _b !== void 0 ? _b : 0;
@@ -73,8 +72,10 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
         onScroll,
         onScrollEndDrag,
     })}>
-      <Image {...panHandlers} source={imageSrc} style={imageStylesWithOpacity} onLoad={onLoaded} CustomImageComponent={CustomImageComponent}/>
-      {(!isLoaded || !imageDimensions) && <ImageLoading />}
+      <Image {...panHandlers} source={imageSrc} style={imagesStyles} 
+    // onLoad={onLoaded}
+    CustomImageComponent={CustomImageComponent}/>
+      {/*{(!isLoaded || !imageDimensions) && <ImageLoading />}*/}
     </ScrollView>);
 };
 const styles = StyleSheet.create({

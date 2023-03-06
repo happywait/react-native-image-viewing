@@ -101,11 +101,11 @@ const ImageItem = ({
     translateValue,
     scaleValue
   );
-  const imageOpacity = scrollValueY.interpolate({
-    inputRange: [-SWIPE_CLOSE_OFFSET, 0, SWIPE_CLOSE_OFFSET],
-    outputRange: [0.7, 1, 0.7],
-  });
-  const imageStylesWithOpacity = { ...imagesStyles, opacity: imageOpacity };
+  // const imageOpacity = scrollValueY.interpolate({
+  //   inputRange: [-SWIPE_CLOSE_OFFSET, 0, SWIPE_CLOSE_OFFSET],
+  //   outputRange: [0.7, 1, 0.7],
+  // });
+  // const imageStylesWithOpacity = { ...imagesStyles, opacity: imageOpacity };
 
   const onScrollEndDrag = ({
     nativeEvent,
@@ -148,11 +148,11 @@ const ImageItem = ({
       <Image
         {...panHandlers}
         source={imageSrc}
-        style={imageStylesWithOpacity}
-        onLoad={onLoaded}
+        style={imagesStyles}
+        // onLoad={onLoaded}
         CustomImageComponent={CustomImageComponent}
       />
-      {(!isLoaded || !imageDimensions) && <ImageLoading />}
+      {/*{(!isLoaded || !imageDimensions) && <ImageLoading />}*/}
     </ScrollView>
   );
 };

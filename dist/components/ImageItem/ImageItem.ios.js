@@ -70,7 +70,9 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPre
     })}>
         {(!loaded || !imageDimensions) && <ImageLoading />}
         <TouchableWithoutFeedback onPress={doubleTapToZoomEnabled ? handleDoubleTap : undefined} onLongPress={onLongPressHandler} delayLongPress={delayLongPress}>
-          <Image source={imageSrc} style={imageStylesWithOpacity} onLoad={() => setLoaded(true)} CustomImageComponent={CustomImageComponent}/>
+          <Image source={imageSrc} style={imageStylesWithOpacity} 
+    // onLoad={() => setLoaded(true)}
+    CustomImageComponent={CustomImageComponent}/>
         </TouchableWithoutFeedback>
       </ScrollView>
     </View>);
