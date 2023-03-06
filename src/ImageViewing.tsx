@@ -15,6 +15,7 @@ import {
   VirtualizedList,
   ModalProps,
   Modal,
+  ImageProps,
 } from 'react-native';
 
 import ImageItem from './components/ImageItem/ImageItem';
@@ -48,7 +49,7 @@ type Props = {
   withBlurBackground?: boolean;
   blurRadius?: number;
   blurOverlayColor?: string;
-  CustomImageComponent?: ComponentType;
+  CustomImageComponent?: ComponentType<ImageProps>;
 };
 
 const DEFAULT_ANIMATION_TYPE = 'fade';

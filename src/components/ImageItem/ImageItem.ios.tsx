@@ -18,6 +18,7 @@ import {
   NativeSyntheticEvent,
   TouchableWithoutFeedback,
   GestureResponderEvent,
+  ImageProps,
 } from 'react-native';
 
 import useDoubleTapToZoom from '../../hooks/useDoubleTapToZoom';
@@ -44,7 +45,7 @@ type Props = {
   doubleTapToZoomEnabled?: boolean;
   onPress: (image: ImageSource) => void;
   doubleTapDelay: number;
-  CustomImageComponent?: ComponentType;
+  CustomImageComponent?: ComponentType<ImageProps>;
 };
 
 const ImageItem = ({

@@ -1,8 +1,8 @@
-import { Animated, ImageProps as RNImageProps } from 'react-native';
+import { ImageProps as RNImageProps } from 'react-native';
 import { ComponentType } from 'react';
-import AnimatedProps = Animated.AnimatedProps;
-type ImageProps = AnimatedProps<RNImageProps> & {
-    CustomImageComponent?: ComponentType;
+type ImageProps = Omit<RNImageProps, 'style'> & {
+    CustomImageComponent?: ComponentType<RNImageProps>;
+    style: any;
 };
 declare const Image: ({ CustomImageComponent, ...props }: ImageProps) => JSX.Element;
 export default Image;

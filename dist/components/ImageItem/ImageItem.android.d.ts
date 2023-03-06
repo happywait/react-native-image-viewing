@@ -6,6 +6,7 @@
  *
  */
 import React, { ComponentType } from 'react';
+import { ImageProps } from 'react-native';
 import { ImageSource } from '../../@types';
 type Props = {
     imageSrc: ImageSource;
@@ -17,7 +18,7 @@ type Props = {
     swipeToCloseEnabled?: boolean;
     doubleTapToZoomEnabled?: boolean;
     doubleTapDelay: number;
-    CustomImageComponent?: ComponentType;
+    CustomImageComponent?: ComponentType<ImageProps>;
 };
 declare const _default: React.MemoExoticComponent<({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, delayLongPress, swipeToCloseEnabled, doubleTapToZoomEnabled, doubleTapDelay, CustomImageComponent, }: Props) => JSX.Element>;
 export default _default;

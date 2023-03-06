@@ -16,6 +16,7 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
   NativeMethodsMixin,
+  ImageProps,
 } from 'react-native';
 
 import useImageDimensions from '../../hooks/useImageDimensions';
@@ -42,7 +43,7 @@ type Props = {
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
   doubleTapDelay: number;
-  CustomImageComponent?: ComponentType;
+  CustomImageComponent?: ComponentType<ImageProps>;
 };
 
 const ImageItem = ({
