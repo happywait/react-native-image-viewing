@@ -45,7 +45,7 @@ type Props = {
   doubleTapToZoomEnabled?: boolean;
   onPress: (image: ImageSource) => void;
   doubleTapDelay: number;
-  CustomImageComponent?: ComponentType<ImageProps>;
+  CustomImageComponent?: ComponentType;
 };
 
 const ImageItem = ({

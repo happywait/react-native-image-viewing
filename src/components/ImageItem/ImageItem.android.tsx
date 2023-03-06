@@ -43,7 +43,7 @@ type Props = {
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
   doubleTapDelay: number;
-  CustomImageComponent?: ComponentType<ImageProps>;
+  CustomImageComponent?: ComponentType;
 };
 
 const ImageItem = ({

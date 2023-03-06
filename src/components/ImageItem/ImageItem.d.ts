@@ -8,7 +8,8 @@
 
 import React, { ComponentType } from 'react';
 import { ImageSource } from '../../@types';
-import { ImageProps } from 'react-native';
+import { Animated, ImageProps } from 'react-native';
+import AnimatedComponent = Animated.AnimatedComponent;
 
 declare type Props = {
   imageSrc: ImageSource;
@@ -20,7 +21,7 @@ declare type Props = {
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
   doubleTapDelay: number;
-  CustomImageComponent?: ComponentType<ImageProps>;
+  CustomImageComponent?: ComponentType;
 };
 
 declare const _default: React.MemoExoticComponent<

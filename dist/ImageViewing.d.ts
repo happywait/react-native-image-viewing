@@ -6,7 +6,7 @@
  *
  */
 import { ComponentType } from 'react';
-import { ModalProps, ImageProps } from 'react-native';
+import { ModalProps } from 'react-native';
 import { ImageSource } from './@types';
 type Props = {
     images: ImageSource[];
@@ -33,7 +33,7 @@ type Props = {
     withBlurBackground?: boolean;
     blurRadius?: number;
     blurOverlayColor?: string;
-    CustomImageComponent?: ComponentType<ImageProps>;
+    CustomImageComponent?: ComponentType;
 };
 declare const EnhancedImageViewing: (props: Props) => JSX.Element;
 export default EnhancedImageViewing;

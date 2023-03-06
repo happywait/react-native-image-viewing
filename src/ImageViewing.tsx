@@ -27,6 +27,8 @@ import useImageIndexChange from './hooks/useImageIndexChange';
 import useRequestClose from './hooks/useRequestClose';
 import { ImageSource } from './@types';
 import Image from './components/Image';
+import { ImageProps as RNImageProps } from 'react-native/Libraries/Image/Image';
+import AnimatedComponent = Animated.AnimatedComponent;
 
 type Props = {
   images: ImageSource[];
@@ -49,7 +51,7 @@ type Props = {
   withBlurBackground?: boolean;
   blurRadius?: number;
   blurOverlayColor?: string;
-  CustomImageComponent?: ComponentType<ImageProps>;
+  CustomImageComponent?: ComponentType;
 };
 
 const DEFAULT_ANIMATION_TYPE = 'fade';
