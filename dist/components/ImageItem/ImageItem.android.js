@@ -74,7 +74,7 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
         onScroll,
         onScrollEndDrag,
     })}>
-      <AnimatedImage {...panHandlers} source={imageSrc} style={imageStylesWithOpacity} onLoad={onLoaded} blurRadius={10}/>
+      <AnimatedImage {...panHandlers} source={imageSrc} style={imageStylesWithOpacity} onLoad={onLoaded}/>
       {(!isLoaded || !imageDimensions) && <ImageLoading />}
     </ScrollView>);
 };

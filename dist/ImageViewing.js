@@ -6,14 +6,13 @@
  *
  */
 import React, { useCallback, useRef, useEffect } from 'react';
-import { Animated, Dimensions, StyleSheet, View, VirtualizedList, Modal, } from 'react-native';
+import { Animated, Dimensions, StyleSheet, View, VirtualizedList, Modal, Image, } from 'react-native';
 import ImageItem from './components/ImageItem/ImageItem';
 import ImageDefaultHeader from './components/ImageDefaultHeader';
 import StatusBarManager from './components/StatusBarManager';
 import useAnimatedComponents from './hooks/useAnimatedComponents';
 import useImageIndexChange from './hooks/useImageIndexChange';
 import useRequestClose from './hooks/useRequestClose';
-import BlurImage from './components/BlurImage';
 const DEFAULT_ANIMATION_TYPE = 'fade';
 const DEFAULT_BG_COLOR = '#000';
 const DEFAULT_DELAY_LONG_PRESS = 800;
@@ -55,7 +54,7 @@ function ImageViewing({ images, keyExtractor, imageIndex, visible, onRequestClos
             offset: SCREEN_WIDTH * index,
             index,
         })} renderItem={({ item: imageSrc }) => (<>
-              {withBlurBackground && (<BlurImage source={imageSrc} style={styles.absolute} blurRadius={blurRadius}/>)}
+              {withBlurBackground && (<Image source={imageSrc} style={styles.absolute} blurRadius={blurRadius}/>)}
               <View style={blurOverlayStyle}>
                 <ImageItem onZoom={onZoom} imageSrc={imageSrc} onRequestClose={onRequestCloseEnhanced} onPress={onPress} onLongPress={onLongPress} delayLongPress={delayLongPress} swipeToCloseEnabled={swipeToCloseEnabled} doubleTapToZoomEnabled={doubleTapToZoomEnabled} doubleTapDelay={doubleTapDelay}/>
               </View>

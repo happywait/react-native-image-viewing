@@ -15,6 +15,7 @@ import {
   VirtualizedList,
   ModalProps,
   Modal,
+  Image,
 } from 'react-native';
 
 import ImageItem from './components/ImageItem/ImageItem';
@@ -25,7 +26,6 @@ import useAnimatedComponents from './hooks/useAnimatedComponents';
 import useImageIndexChange from './hooks/useImageIndexChange';
 import useRequestClose from './hooks/useRequestClose';
 import { ImageSource } from './@types';
-import BlurImage from './components/BlurImage';
 
 type Props = {
   images: ImageSource[];
@@ -151,7 +151,7 @@ function ImageViewing({
           renderItem={({ item: imageSrc }: { item: ImageSource }) => (
             <>
               {withBlurBackground && (
-                <BlurImage
+                <Image
                   source={imageSrc}
                   style={styles.absolute}
                   blurRadius={blurRadius}

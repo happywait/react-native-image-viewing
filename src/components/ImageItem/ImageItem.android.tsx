@@ -149,7 +149,6 @@ const ImageItem = ({
         source={imageSrc}
         style={imageStylesWithOpacity}
         onLoad={onLoaded}
-        blurRadius={10}
       />
       {(!isLoaded || !imageDimensions) && <ImageLoading />}
     </ScrollView>
