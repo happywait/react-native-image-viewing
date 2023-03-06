@@ -11,12 +11,13 @@ import useDoubleTapToZoom from '../../hooks/useDoubleTapToZoom';
 import useImageDimensions from '../../hooks/useImageDimensions';
 import { getImageStyles, getImageTransform } from '../../utils';
 import { ImageLoading } from './ImageLoading';
+import Image from '../Image';
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.55;
 const SCREEN = Dimensions.get('screen');
 const SCREEN_WIDTH = SCREEN.width;
 const SCREEN_HEIGHT = SCREEN.height;
-const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPress, swipeToCloseEnabled = true, doubleTapToZoomEnabled = true, onPress, doubleTapDelay, }) => {
+const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPress, swipeToCloseEnabled = true, doubleTapToZoomEnabled = true, onPress, doubleTapDelay, CustomImageComponent, }) => {
     const scrollViewRef = useRef(null);
     const [loaded, setLoaded] = useState(false);
     const [scaled, setScaled] = useState(false);
@@ -69,7 +70,7 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPre
     })}>
         {(!loaded || !imageDimensions) && <ImageLoading />}
         <TouchableWithoutFeedback onPress={doubleTapToZoomEnabled ? handleDoubleTap : undefined} onLongPress={onLongPressHandler} delayLongPress={delayLongPress}>
-          <Animated.Image source={imageSrc} style={imageStylesWithOpacity} onLoad={() => setLoaded(true)}/>
+          <Image source={imageSrc} style={imageStylesWithOpacity} onLoad={() => setLoaded(true)} CustomImageComponent={CustomImageComponent}/>
         </TouchableWithoutFeedback>
       </ScrollView>
     </View>);

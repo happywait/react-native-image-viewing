@@ -33,6 +33,7 @@ type Props = {
     withBlurBackground?: boolean;
     blurRadius?: number;
     blurOverlayColor?: string;
+    CustomImageComponent?: ComponentType;
 };
 declare const EnhancedImageViewing: (props: Props) => JSX.Element;
 export default EnhancedImageViewing;
