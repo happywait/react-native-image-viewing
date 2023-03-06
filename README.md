@@ -61,9 +61,9 @@ const [visible, setIsVisible] = useState(false);
 ## Props
 
 | Prop name                | Description                                                                                         | Type                                                        | Required |
-| ------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------- |
+|--------------------------|-----------------------------------------------------------------------------------------------------| ----------------------------------------------------------- | -------- |
 | `images`                 | Array of images to display                                                                          | ImageSource[]                                               | true     |
-| `keyExtractor`           | Uniqely identifying each image    | (imageSrc: ImageSource, index: number) => string | false |
+| `keyExtractor`           | Uniqely identifying each image                                                                      | (imageSrc: ImageSource, index: number) => string | false |
 | `imageIndex`             | Current index of image to display                                                                   | number                                                      | true     |
 | `visible`                | Is modal shown or not                                                                               | boolean                                                     | true     |
 | `onRequestClose`         | Function called to close the modal                                                                  | function                                                    | true     |
@@ -82,6 +82,7 @@ const [visible, setIsVisible] = useState(false);
 | `withBlurBackground`     | Add a blur background: default `true`                                                               | boolean                                                     | false    |    
 | `blurRadius`             | The blur radius of the blur filter added to the image: default `10`                                 | number                                                      | false    |    
 | `blurOverlayColor`       | A string that represent a color. You should use a transparency color.                               | string                                                      | false    |  
+| `CustomImageComponent`   | ImageComponent                                                                                      | component, function                                         | false    |  
 
 - type ImageSource = ImageURISource | ImageRequireSource
 

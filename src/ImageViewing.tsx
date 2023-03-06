@@ -25,6 +25,7 @@ import useAnimatedComponents from './hooks/useAnimatedComponents';
 import useImageIndexChange from './hooks/useImageIndexChange';
 import useRequestClose from './hooks/useRequestClose';
 import { ImageSource } from './@types';
+import Image from './components/Image';
 
 type Props = {
   images: ImageSource[];
@@ -47,6 +48,7 @@ type Props = {
   withBlurBackground?: boolean;
   blurRadius?: number;
   blurOverlayColor?: string;
+  CustomImageComponent?: ComponentType;
 };
 
 const DEFAULT_ANIMATION_TYPE = 'fade';
@@ -77,6 +79,7 @@ function ImageViewing({
   withBlurBackground = true,
   blurRadius = 10,
   blurOverlayColor,
+  CustomImageComponent,
 }: Props) {
   const imageList = useRef<VirtualizedList<ImageSource>>(null);
   const [opacity, onRequestCloseEnhanced] = useRequestClose(onRequestClose);
@@ -150,10 +153,11 @@ function ImageViewing({
           renderItem={({ item: imageSrc }: { item: ImageSource }) => (
             <>
               {withBlurBackground && (
-                <Animated.Image
+                <Image
                   source={imageSrc}
                   style={styles.absolute}
                   blurRadius={blurRadius}
+                  CustomImageComponent={CustomImageComponent}
                 />
               )}
               <View style={blurOverlayStyle}>
@@ -167,6 +171,7 @@ function ImageViewing({
                   swipeToCloseEnabled={swipeToCloseEnabled}
                   doubleTapToZoomEnabled={doubleTapToZoomEnabled}
                   doubleTapDelay={doubleTapDelay}
+                  CustomImageComponent={CustomImageComponent}
                 />
               </View>
             </>

@@ -6,7 +6,7 @@
  *
  */
 
-import React, { useCallback, useRef, useState } from 'react';
+import React, { ComponentType, useCallback, useRef, useState } from 'react';
 
 import {
   Animated,
@@ -26,6 +26,7 @@ import useImageDimensions from '../../hooks/useImageDimensions';
 import { getImageStyles, getImageTransform } from '../../utils';
 import { ImageSource } from '../../@types';
 import { ImageLoading } from './ImageLoading';
+import Image from '../Image';
 
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.55;
@@ -43,6 +44,7 @@ type Props = {
   doubleTapToZoomEnabled?: boolean;
   onPress: (image: ImageSource) => void;
   doubleTapDelay: number;
+  CustomImageComponent?: ComponentType;
 };
 
 const ImageItem = ({
@@ -55,6 +57,7 @@ const ImageItem = ({
   doubleTapToZoomEnabled = true,
   onPress,
   doubleTapDelay,
+  CustomImageComponent,
 }: Props) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const [loaded, setLoaded] = useState(false);
@@ -147,10 +150,11 @@ const ImageItem = ({
           onLongPress={onLongPressHandler}
           delayLongPress={delayLongPress}
         >
-          <Animated.Image
+          <Image
             source={imageSrc}
             style={imageStylesWithOpacity}
             onLoad={() => setLoaded(true)}
+            CustomImageComponent={CustomImageComponent}
           />
         </TouchableWithoutFeedback>
       </ScrollView>
