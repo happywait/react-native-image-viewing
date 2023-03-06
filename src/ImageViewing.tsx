@@ -25,6 +25,7 @@ import useAnimatedComponents from './hooks/useAnimatedComponents';
 import useImageIndexChange from './hooks/useImageIndexChange';
 import useRequestClose from './hooks/useRequestClose';
 import { ImageSource } from './@types';
+import { Image } from 'expo-image';
 
 type Props = {
   images: ImageSource[];
@@ -48,6 +49,8 @@ type Props = {
   blurRadius?: number;
   blurOverlayColor?: string;
 };
+
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const DEFAULT_ANIMATION_TYPE = 'fade';
 const DEFAULT_BG_COLOR = '#000';
@@ -150,7 +153,7 @@ function ImageViewing({
           renderItem={({ item: imageSrc }: { item: ImageSource }) => (
             <>
               {withBlurBackground && (
-                <Animated.Image
+                <AnimatedImage
                   source={imageSrc}
                   style={styles.absolute}
                   blurRadius={blurRadius}

@@ -24,6 +24,7 @@ import usePanResponder from '../../hooks/usePanResponder';
 import { getImageStyles, getImageTransform } from '../../utils';
 import { ImageSource } from '../../@types';
 import { ImageLoading } from './ImageLoading';
+import { Image } from 'expo-image';
 
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.75;
@@ -42,6 +43,8 @@ type Props = {
   doubleTapToZoomEnabled?: boolean;
   doubleTapDelay: number;
 };
+
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const ImageItem = ({
   imageSrc,
@@ -141,7 +144,7 @@ const ImageItem = ({
         onScrollEndDrag,
       })}
     >
-      <Animated.Image
+      <AnimatedImage
         {...panHandlers}
         source={imageSrc}
         style={imageStylesWithOpacity}

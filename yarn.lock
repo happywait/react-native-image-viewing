@@ -2235,6 +2235,11 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+expo-image@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-1.0.0.tgz#a3670d20815d99e2527307a33761c9b0088823b1"
+  integrity sha512-A1amVExKhBa/eRXuceauYtPkf9izeje5AbxEWL09tgK91rf3GSIZXM5PSDGlIM0s7dpCV+Iet2jhwcFUfWaZrw==
+
 extend-shallow@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"

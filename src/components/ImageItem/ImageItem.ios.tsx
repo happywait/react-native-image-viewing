@@ -26,6 +26,7 @@ import useImageDimensions from '../../hooks/useImageDimensions';
 import { getImageStyles, getImageTransform } from '../../utils';
 import { ImageSource } from '../../@types';
 import { ImageLoading } from './ImageLoading';
+import { Image } from 'expo-image';
 
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.55;
@@ -44,6 +45,8 @@ type Props = {
   onPress: (image: ImageSource) => void;
   doubleTapDelay: number;
 };
+
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const ImageItem = ({
   imageSrc,
@@ -147,7 +150,7 @@ const ImageItem = ({
           onLongPress={onLongPressHandler}
           delayLongPress={delayLongPress}
         >
-          <Animated.Image
+          <AnimatedImage
             source={imageSrc}
             style={imageStylesWithOpacity}
             onLoad={() => setLoaded(true)}

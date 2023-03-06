@@ -13,6 +13,8 @@ import StatusBarManager from './components/StatusBarManager';
 import useAnimatedComponents from './hooks/useAnimatedComponents';
 import useImageIndexChange from './hooks/useImageIndexChange';
 import useRequestClose from './hooks/useRequestClose';
+import { Image } from 'expo-image';
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 const DEFAULT_ANIMATION_TYPE = 'fade';
 const DEFAULT_BG_COLOR = '#000';
 const DEFAULT_DELAY_LONG_PRESS = 800;
@@ -54,7 +56,7 @@ function ImageViewing({ images, keyExtractor, imageIndex, visible, onRequestClos
             offset: SCREEN_WIDTH * index,
             index,
         })} renderItem={({ item: imageSrc }) => (<>
-              {withBlurBackground && (<Animated.Image source={imageSrc} style={styles.absolute} blurRadius={blurRadius}/>)}
+              {withBlurBackground && (<AnimatedImage source={imageSrc} style={styles.absolute} blurRadius={blurRadius}/>)}
               <View style={blurOverlayStyle}>
                 <ImageItem onZoom={onZoom} imageSrc={imageSrc} onRequestClose={onRequestCloseEnhanced} onPress={onPress} onLongPress={onLongPress} delayLongPress={delayLongPress} swipeToCloseEnabled={swipeToCloseEnabled} doubleTapToZoomEnabled={doubleTapToZoomEnabled} doubleTapDelay={doubleTapDelay}/>
               </View>

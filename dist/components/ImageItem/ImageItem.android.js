@@ -11,11 +11,13 @@ import useImageDimensions from '../../hooks/useImageDimensions';
 import usePanResponder from '../../hooks/usePanResponder';
 import { getImageStyles, getImageTransform } from '../../utils';
 import { ImageLoading } from './ImageLoading';
+import { Image } from 'expo-image';
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.75;
 const SCREEN = Dimensions.get('window');
 const SCREEN_WIDTH = SCREEN.width;
 const SCREEN_HEIGHT = SCREEN.height;
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, delayLongPress, swipeToCloseEnabled = true, doubleTapToZoomEnabled = true, doubleTapDelay, }) => {
     const imageContainer = useRef(null);
     const imageDimensions = useImageDimensions(imageSrc);
@@ -72,7 +74,7 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
         onScroll,
         onScrollEndDrag,
     })}>
-      <Animated.Image {...panHandlers} source={imageSrc} style={imageStylesWithOpacity} onLoad={onLoaded}/>
+      <AnimatedImage {...panHandlers} source={imageSrc} style={imageStylesWithOpacity} onLoad={onLoaded}/>
       {(!isLoaded || !imageDimensions) && <ImageLoading />}
     </ScrollView>);
 };
