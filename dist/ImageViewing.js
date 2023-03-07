@@ -34,9 +34,8 @@ function ImageViewing({ images, keyExtractor, imageIndex, visible, onRequestClos
         }
     }, [currentImageIndex]);
     const onZoom = useCallback((isScaled) => {
-        var _a;
         // @ts-ignore
-        (_a = imageList === null || imageList === void 0 ? void 0 : imageList.current) === null || _a === void 0 ? void 0 : _a.setNativeProps({ scrollEnabled: !isScaled });
+        imageList?.current?.setNativeProps({ scrollEnabled: !isScaled });
         toggleBarsVisible(!isScaled);
     }, [imageList]);
     if (!visible) {
@@ -54,12 +53,14 @@ function ImageViewing({ images, keyExtractor, imageIndex, visible, onRequestClos
             length: SCREEN_WIDTH,
             offset: SCREEN_WIDTH * index,
             index,
-        })} renderItem={({ item: imageSrc }) => (<>
-              {withBlurBackground && (<Image {...expoImageProps} source={imageSrc} style={styles.absolute} blurRadius={blurRadius}/>)}
-              <View style={blurOverlayStyle}>
-                <ImageItem onZoom={onZoom} imageSrc={imageSrc} onRequestClose={onRequestCloseEnhanced} onPress={onPress} onLongPress={onLongPress} delayLongPress={delayLongPress} swipeToCloseEnabled={swipeToCloseEnabled} doubleTapToZoomEnabled={doubleTapToZoomEnabled} doubleTapDelay={doubleTapDelay} expoImageProps={expoImageProps}/>
-              </View>
-            </>)} onMomentumScrollEnd={onScroll} 
+        })} renderItem={({ item: imageSrc }) => {
+            return (<View>
+                {withBlurBackground && (<Image {...expoImageProps} source={imageSrc} style={styles.absolute} blurRadius={blurRadius}/>)}
+                <View style={blurOverlayStyle}>
+                  <ImageItem onZoom={onZoom} imageSrc={imageSrc} onRequestClose={onRequestCloseEnhanced} onPress={onPress} onLongPress={onLongPress} delayLongPress={delayLongPress} swipeToCloseEnabled={swipeToCloseEnabled} doubleTapToZoomEnabled={doubleTapToZoomEnabled} doubleTapDelay={doubleTapDelay} expoImageProps={expoImageProps}/>
+                </View>
+              </View>);
+        }} onMomentumScrollEnd={onScroll} 
     //@ts-ignore
     keyExtractor={(imageSrc, index) => keyExtractor
             ? keyExtractor(imageSrc, index)

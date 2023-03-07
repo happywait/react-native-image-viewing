@@ -10,7 +10,6 @@ import { Animated, Dimensions, ScrollView, StyleSheet, View, TouchableWithoutFee
 import useDoubleTapToZoom from '../../hooks/useDoubleTapToZoom';
 import useImageDimensions from '../../hooks/useImageDimensions';
 import { getImageStyles, getImageTransform } from '../../utils';
-import { ImageLoading } from './ImageLoading';
 import { Image } from 'expo-image';
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.55;
@@ -43,9 +42,8 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPre
     const imagesStyles = getImageStyles(imageDimensions, translateValue, scaleValue);
     const imageStylesWithOpacity = { ...imagesStyles, opacity: imageOpacity };
     const onScrollEndDrag = useCallback(({ nativeEvent }) => {
-        var _a, _b;
-        const velocityY = (_b = (_a = nativeEvent === null || nativeEvent === void 0 ? void 0 : nativeEvent.velocity) === null || _a === void 0 ? void 0 : _a.y) !== null && _b !== void 0 ? _b : 0;
-        const scaled = (nativeEvent === null || nativeEvent === void 0 ? void 0 : nativeEvent.zoomScale) > 1;
+        const velocityY = nativeEvent?.velocity?.y ?? 0;
+        const scaled = nativeEvent?.zoomScale > 1;
         onZoom(scaled);
         setScaled(scaled);
         if (!scaled &&
@@ -55,9 +53,8 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPre
         }
     }, [scaled]);
     const onScroll = ({ nativeEvent, }) => {
-        var _a, _b;
-        const offsetY = (_b = (_a = nativeEvent === null || nativeEvent === void 0 ? void 0 : nativeEvent.contentOffset) === null || _a === void 0 ? void 0 : _a.y) !== null && _b !== void 0 ? _b : 0;
-        if ((nativeEvent === null || nativeEvent === void 0 ? void 0 : nativeEvent.zoomScale) > 1) {
+        const offsetY = nativeEvent?.contentOffset?.y ?? 0;
+        if (nativeEvent?.zoomScale > 1) {
             return;
         }
         scrollValueY.setValue(offsetY);
@@ -69,7 +66,7 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPre
       <ScrollView ref={scrollViewRef} style={styles.listItem} pinchGestureEnabled showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} maximumZoomScale={maxScale} contentContainerStyle={styles.imageScrollContainer} scrollEnabled={swipeToCloseEnabled} onScrollEndDrag={onScrollEndDrag} scrollEventThrottle={1} {...(swipeToCloseEnabled && {
         onScroll,
     })}>
-        {(!loaded || !imageDimensions) && <ImageLoading />}
+        {/*{(!loaded || !imageDimensions) && <ImageLoading />}*/}
         <TouchableWithoutFeedback onPress={doubleTapToZoomEnabled ? handleDoubleTap : undefined} onLongPress={onLongPressHandler} delayLongPress={delayLongPress}>
           <AnimatedImage {...expoImageProps} source={imageSrc} style={imageStylesWithOpacity} onLoad={() => setLoaded(true)}/>
         </TouchableWithoutFeedback>

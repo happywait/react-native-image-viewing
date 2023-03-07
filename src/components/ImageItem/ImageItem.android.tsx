@@ -65,7 +65,12 @@ const ImageItem = ({
   const scrollValueY = new Animated.Value(0);
   const [isLoaded, setLoadEnd] = useState(false);
 
-  const onLoaded = useCallback(() => setLoadEnd(true), []);
+  console.log('imageDimensions', imageDimensions);
+
+  const onLoaded = useCallback(() => {
+    console.log('load end');
+    setLoadEnd(true);
+  }, []);
   const onZoomPerformed = useCallback(
     (isZoomed: boolean) => {
       onZoom(isZoomed);
@@ -153,7 +158,7 @@ const ImageItem = ({
         style={imageStylesWithOpacity}
         onLoad={onLoaded}
       />
-      {(!isLoaded || !imageDimensions) && <ImageLoading />}
+      {/*{(!isLoaded || !imageDimensions) && <ImageLoading />}*/}
     </ScrollView>
   );
 };

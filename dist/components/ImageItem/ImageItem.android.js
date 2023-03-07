@@ -10,7 +10,6 @@ import { Animated, ScrollView, Dimensions, StyleSheet, } from 'react-native';
 import useImageDimensions from '../../hooks/useImageDimensions';
 import usePanResponder from '../../hooks/usePanResponder';
 import { getImageStyles, getImageTransform } from '../../utils';
-import { ImageLoading } from './ImageLoading';
 import { Image } from 'expo-image';
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.75;
@@ -24,10 +23,14 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
     const [translate, scale] = getImageTransform(imageDimensions, SCREEN);
     const scrollValueY = new Animated.Value(0);
     const [isLoaded, setLoadEnd] = useState(false);
-    const onLoaded = useCallback(() => setLoadEnd(true), []);
+    console.log('imageDimensions', imageDimensions);
+    const onLoaded = useCallback(() => {
+        console.log('load end');
+        setLoadEnd(true);
+    }, []);
     const onZoomPerformed = useCallback((isZoomed) => {
         onZoom(isZoomed);
-        if (imageContainer === null || imageContainer === void 0 ? void 0 : imageContainer.current) {
+        if (imageContainer?.current) {
             imageContainer.current.setNativeProps({
                 scrollEnabled: !isZoomed,
             });
@@ -56,9 +59,8 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
     });
     const imageStylesWithOpacity = { ...imagesStyles, opacity: imageOpacity };
     const onScrollEndDrag = ({ nativeEvent, }) => {
-        var _a, _b, _c, _d;
-        const velocityY = (_b = (_a = nativeEvent === null || nativeEvent === void 0 ? void 0 : nativeEvent.velocity) === null || _a === void 0 ? void 0 : _a.y) !== null && _b !== void 0 ? _b : 0;
-        const offsetY = (_d = (_c = nativeEvent === null || nativeEvent === void 0 ? void 0 : nativeEvent.contentOffset) === null || _c === void 0 ? void 0 : _c.y) !== null && _d !== void 0 ? _d : 0;
+        const velocityY = nativeEvent?.velocity?.y ?? 0;
+        const offsetY = nativeEvent?.contentOffset?.y ?? 0;
         if ((Math.abs(velocityY) > SWIPE_CLOSE_VELOCITY &&
             offsetY > SWIPE_CLOSE_OFFSET) ||
             offsetY > SCREEN_HEIGHT / 2) {
@@ -66,8 +68,7 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
         }
     };
     const onScroll = ({ nativeEvent, }) => {
-        var _a, _b;
-        const offsetY = (_b = (_a = nativeEvent === null || nativeEvent === void 0 ? void 0 : nativeEvent.contentOffset) === null || _a === void 0 ? void 0 : _a.y) !== null && _b !== void 0 ? _b : 0;
+        const offsetY = nativeEvent?.contentOffset?.y ?? 0;
         scrollValueY.setValue(offsetY);
     };
     return (<ScrollView ref={imageContainer} style={styles.listItem} pagingEnabled nestedScrollEnabled showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} contentContainerStyle={styles.imageScrollContainer} scrollEnabled={swipeToCloseEnabled} {...(swipeToCloseEnabled && {
@@ -75,7 +76,7 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
         onScrollEndDrag,
     })}>
       <AnimatedImage {...expoImageProps} {...panHandlers} source={imageSrc} style={imageStylesWithOpacity} onLoad={onLoaded}/>
-      {(!isLoaded || !imageDimensions) && <ImageLoading />}
+      {/*{(!isLoaded || !imageDimensions) && <ImageLoading />}*/}
     </ScrollView>);
 };
 const styles = StyleSheet.create({

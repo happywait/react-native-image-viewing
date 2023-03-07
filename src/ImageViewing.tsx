@@ -150,32 +150,34 @@ function ImageViewing({
             offset: SCREEN_WIDTH * index,
             index,
           })}
-          renderItem={({ item: imageSrc }: { item: ImageSource }) => (
-            <>
-              {withBlurBackground && (
-                <Image
-                  {...expoImageProps}
-                  source={imageSrc}
-                  style={styles.absolute}
-                  blurRadius={blurRadius}
-                />
-              )}
-              <View style={blurOverlayStyle}>
-                <ImageItem
-                  onZoom={onZoom}
-                  imageSrc={imageSrc}
-                  onRequestClose={onRequestCloseEnhanced}
-                  onPress={onPress}
-                  onLongPress={onLongPress}
-                  delayLongPress={delayLongPress}
-                  swipeToCloseEnabled={swipeToCloseEnabled}
-                  doubleTapToZoomEnabled={doubleTapToZoomEnabled}
-                  doubleTapDelay={doubleTapDelay}
-                  expoImageProps={expoImageProps}
-                />
+          renderItem={({ item: imageSrc }: { item: ImageSource }) => {
+            return (
+              <View>
+                {withBlurBackground && (
+                  <Image
+                    {...expoImageProps}
+                    source={imageSrc}
+                    style={styles.absolute}
+                    blurRadius={blurRadius}
+                  />
+                )}
+                <View style={blurOverlayStyle}>
+                  <ImageItem
+                    onZoom={onZoom}
+                    imageSrc={imageSrc}
+                    onRequestClose={onRequestCloseEnhanced}
+                    onPress={onPress}
+                    onLongPress={onLongPress}
+                    delayLongPress={delayLongPress}
+                    swipeToCloseEnabled={swipeToCloseEnabled}
+                    doubleTapToZoomEnabled={doubleTapToZoomEnabled}
+                    doubleTapDelay={doubleTapDelay}
+                    expoImageProps={expoImageProps}
+                  />
+                </View>
               </View>
-            </>
-          )}
+            );
+          }}
           onMomentumScrollEnd={onScroll}
           //@ts-ignore
           keyExtractor={(imageSrc, index) =>

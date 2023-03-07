@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { GestureResponderEvent } from 'react-native';
 import { ImageSource } from '../../@types';
 import { ImageProps } from 'expo-image';
 
@@ -29,9 +28,12 @@ declare const _default: React.MemoExoticComponent<
     imageSrc,
     onZoom,
     onRequestClose,
+    onPress,
     onLongPress,
     delayLongPress,
     swipeToCloseEnabled,
+    doubleTapToZoomEnabled,
+    doubleTapDelay,
     expoImageProps,
   }: Props) => JSX.Element
 >;
