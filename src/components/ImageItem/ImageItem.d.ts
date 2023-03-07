@@ -9,6 +9,7 @@
 import React from 'react';
 import { GestureResponderEvent } from 'react-native';
 import { ImageSource } from '../../@types';
+import { ImageProps } from 'expo-image';
 
 declare type Props = {
   imageSrc: ImageSource;
@@ -20,6 +21,7 @@ declare type Props = {
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
   doubleTapDelay: number;
+  expoImageProps?: ImageProps;
 };
 
 declare const _default: React.MemoExoticComponent<
@@ -30,6 +32,7 @@ declare const _default: React.MemoExoticComponent<
     onLongPress,
     delayLongPress,
     swipeToCloseEnabled,
+    expoImageProps,
   }: Props) => JSX.Element
 >;
 

@@ -18,7 +18,7 @@ const SCREEN = Dimensions.get('window');
 const SCREEN_WIDTH = SCREEN.width;
 const SCREEN_HEIGHT = SCREEN.height;
 const AnimatedImage = Animated.createAnimatedComponent(Image);
-const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, delayLongPress, swipeToCloseEnabled = true, doubleTapToZoomEnabled = true, doubleTapDelay, }) => {
+const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, delayLongPress, swipeToCloseEnabled = true, doubleTapToZoomEnabled = true, doubleTapDelay, expoImageProps, }) => {
     const imageContainer = useRef(null);
     const imageDimensions = useImageDimensions(imageSrc);
     const [translate, scale] = getImageTransform(imageDimensions, SCREEN);
@@ -74,7 +74,7 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
         onScroll,
         onScrollEndDrag,
     })}>
-      <AnimatedImage {...panHandlers} source={imageSrc} style={imageStylesWithOpacity} onLoad={onLoaded}/>
+      <AnimatedImage {...expoImageProps} {...panHandlers} source={imageSrc} style={imageStylesWithOpacity} onLoad={onLoaded}/>
       {(!isLoaded || !imageDimensions) && <ImageLoading />}
     </ScrollView>);
 };

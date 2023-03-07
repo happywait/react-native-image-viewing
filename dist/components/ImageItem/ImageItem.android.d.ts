@@ -7,6 +7,7 @@
  */
 import React from 'react';
 import { ImageSource } from '../../@types';
+import { ImageProps } from 'expo-image';
 type Props = {
     imageSrc: ImageSource;
     onRequestClose: () => void;
@@ -17,6 +18,7 @@ type Props = {
     swipeToCloseEnabled?: boolean;
     doubleTapToZoomEnabled?: boolean;
     doubleTapDelay: number;
+    expoImageProps?: ImageProps;
 };
-declare const _default: React.MemoExoticComponent<({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, delayLongPress, swipeToCloseEnabled, doubleTapToZoomEnabled, doubleTapDelay, }: Props) => JSX.Element>;
+declare const _default: React.MemoExoticComponent<({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, delayLongPress, swipeToCloseEnabled, doubleTapToZoomEnabled, doubleTapDelay, expoImageProps, }: Props) => JSX.Element>;
 export default _default;

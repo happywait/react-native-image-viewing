@@ -8,6 +8,7 @@
 import { ComponentType } from 'react';
 import { ModalProps } from 'react-native';
 import { ImageSource } from './@types';
+import { ImageProps } from 'expo-image';
 type Props = {
     images: ImageSource[];
     keyExtractor?: (imageSrc: ImageSource, index: number) => string;
@@ -33,6 +34,7 @@ type Props = {
     withBlurBackground?: boolean;
     blurRadius?: number;
     blurOverlayColor?: string;
+    expoImageProps?: ImageProps;
 };
 declare const EnhancedImageViewing: (props: Props) => JSX.Element;
 export default EnhancedImageViewing;

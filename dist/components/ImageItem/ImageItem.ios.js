@@ -18,7 +18,7 @@ const SCREEN = Dimensions.get('screen');
 const SCREEN_WIDTH = SCREEN.width;
 const SCREEN_HEIGHT = SCREEN.height;
 const AnimatedImage = Animated.createAnimatedComponent(Image);
-const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPress, swipeToCloseEnabled = true, doubleTapToZoomEnabled = true, onPress, doubleTapDelay, }) => {
+const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPress, swipeToCloseEnabled = true, doubleTapToZoomEnabled = true, onPress, doubleTapDelay, expoImageProps, }) => {
     const scrollViewRef = useRef(null);
     const [loaded, setLoaded] = useState(false);
     const [scaled, setScaled] = useState(false);
@@ -71,7 +71,7 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onLongPress, delayLongPre
     })}>
         {(!loaded || !imageDimensions) && <ImageLoading />}
         <TouchableWithoutFeedback onPress={doubleTapToZoomEnabled ? handleDoubleTap : undefined} onLongPress={onLongPressHandler} delayLongPress={delayLongPress}>
-          <AnimatedImage source={imageSrc} style={imageStylesWithOpacity} onLoad={() => setLoaded(true)}/>
+          <AnimatedImage {...expoImageProps} source={imageSrc} style={imageStylesWithOpacity} onLoad={() => setLoaded(true)}/>
         </TouchableWithoutFeedback>
       </ScrollView>
     </View>);

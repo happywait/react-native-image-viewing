@@ -15,7 +15,6 @@ import {
   VirtualizedList,
   ModalProps,
   Modal,
-  Image,
 } from 'react-native';
 
 import ImageItem from './components/ImageItem/ImageItem';
@@ -26,6 +25,7 @@ import useAnimatedComponents from './hooks/useAnimatedComponents';
 import useImageIndexChange from './hooks/useImageIndexChange';
 import useRequestClose from './hooks/useRequestClose';
 import { ImageSource } from './@types';
+import { Image, ImageProps } from 'expo-image';
 
 type Props = {
   images: ImageSource[];
@@ -48,6 +48,7 @@ type Props = {
   withBlurBackground?: boolean;
   blurRadius?: number;
   blurOverlayColor?: string;
+  expoImageProps?: ImageProps;
 };
 
 const DEFAULT_ANIMATION_TYPE = 'fade';
@@ -78,6 +79,7 @@ function ImageViewing({
   withBlurBackground = true,
   blurRadius = 10,
   blurOverlayColor,
+  expoImageProps,
 }: Props) {
   const imageList = useRef<VirtualizedList<ImageSource>>(null);
   const [opacity, onRequestCloseEnhanced] = useRequestClose(onRequestClose);
@@ -152,6 +154,7 @@ function ImageViewing({
             <>
               {withBlurBackground && (
                 <Image
+                  {...expoImageProps}
                   source={imageSrc}
                   style={styles.absolute}
                   blurRadius={blurRadius}
@@ -168,6 +171,7 @@ function ImageViewing({
                   swipeToCloseEnabled={swipeToCloseEnabled}
                   doubleTapToZoomEnabled={doubleTapToZoomEnabled}
                   doubleTapDelay={doubleTapDelay}
+                  expoImageProps={expoImageProps}
                 />
               </View>
             </>

@@ -24,7 +24,7 @@ import usePanResponder from '../../hooks/usePanResponder';
 import { getImageStyles, getImageTransform } from '../../utils';
 import { ImageSource } from '../../@types';
 import { ImageLoading } from './ImageLoading';
-import { Image } from 'expo-image';
+import { Image, ImageProps } from 'expo-image';
 
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.75;
@@ -42,6 +42,7 @@ type Props = {
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
   doubleTapDelay: number;
+  expoImageProps?: ImageProps;
 };
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
@@ -56,6 +57,7 @@ const ImageItem = ({
   swipeToCloseEnabled = true,
   doubleTapToZoomEnabled = true,
   doubleTapDelay,
+  expoImageProps,
 }: Props) => {
   const imageContainer = useRef<ScrollView & NativeMethodsMixin>(null);
   const imageDimensions = useImageDimensions(imageSrc);
@@ -145,6 +147,7 @@ const ImageItem = ({
       })}
     >
       <AnimatedImage
+        {...expoImageProps}
         {...panHandlers}
         source={imageSrc}
         style={imageStylesWithOpacity}
