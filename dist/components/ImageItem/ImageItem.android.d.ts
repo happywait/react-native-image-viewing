@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import { ImageProps } from 'expo-image';
 import React from 'react';
+import { ImageProps } from 'react-native';
 import { ImageSource } from '../../@types';
 type Props = {
     imageSrc: ImageSource;

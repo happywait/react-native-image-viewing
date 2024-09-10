@@ -5,9 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import { Image } from 'expo-image';
 import React, { useCallback, useRef, useState } from 'react';
-import { Animated, ScrollView, } from 'react-native';
+import { Animated, Image, ScrollView, } from 'react-native';
 import usePanResponder from '../../hooks/usePanResponder';
 import { getImageStyles, getImageTransform } from '../../utils';
 import ImageLoading from './ImageLoading';
@@ -81,7 +80,9 @@ const ImageItem = ({ imageSrc, onZoom, onRequestClose, onPress, onLongPress, del
         onScroll,
         onScrollEndDrag,
     })}>
-      <AnimatedImage {...imageProps} {...panHandlers} source={imageSrc} onLoad={onLoaded} style={imageStylesWithOpacity}/>
+      <AnimatedImage {...imageProps} {...panHandlers} source={imageSrc} onLoad={(e) => {
+            onLoaded(e.nativeEvent);
+        }} style={imageStylesWithOpacity}/>
       {!isLoaded && <ImageLoading />}
     </ScrollView>);
 };

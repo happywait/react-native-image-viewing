@@ -6,10 +6,12 @@
  *
  */
 
-import { Image, ImageLoadEventData, ImageProps } from 'expo-image';
 import React, { useCallback, useRef, useState } from 'react';
 import {
   Animated,
+  Image,
+  ImageLoadEventData,
+  ImageProps,
   NativeMethodsMixin,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -155,7 +157,9 @@ const ImageItem = ({
         {...imageProps}
         {...panHandlers}
         source={imageSrc}
-        onLoad={onLoaded}
+        onLoad={(e) => {
+          onLoaded(e.nativeEvent);
+        }}
         style={imageStylesWithOpacity}
       />
       {!isLoaded && <ImageLoading />}
