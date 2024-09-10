@@ -39,14 +39,13 @@ type Orientations =
   | 'landscape-left'
   | 'landscape-right';
 
-
-type ViewToken  = {
+type ViewToken = {
   item: any;
   key: string;
   index: number | null;
   isViewable: boolean;
   section?: any;
-}
+};
 
 type Props = {
   images: ImageSource[];
@@ -147,7 +146,6 @@ function ImageViewing({
     onImageIndexChange?.(currentIndex);
   }, [onImageIndexChange, currentIndex]);
 
-
   const onViewableItemsChanged = useCallback(
     ({
       viewableItems,
@@ -157,7 +155,7 @@ function ImageViewing({
       changed: ViewToken[];
     }) => {
       if (isRotating) return;
-      const index = viewableItems[viewableItems.length - 1].index || 0;
+      const index = viewableItems[0].index ?? 0;
       setCurrentIndex(index);
     },
     []
@@ -254,7 +252,7 @@ function ImageViewing({
           }}
           viewabilityConfigCallbackPairs={
             viewabilityConfigCallbackPairs.current
-        }
+          }
           keyExtractor={(imageSrc: ImageSource, index: number) =>
             keyExtractor?.(imageSrc, index) ?? typeof imageSrc === 'number'
               ? imageSrc.toString()

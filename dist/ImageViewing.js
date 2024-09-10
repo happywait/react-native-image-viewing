@@ -54,9 +54,10 @@ function ImageViewing({ images, keyExtractor, imageIndex, visible, onRequestClos
         onImageIndexChange === null || onImageIndexChange === void 0 ? void 0 : onImageIndexChange(currentIndex);
     }, [onImageIndexChange, currentIndex]);
     const onViewableItemsChanged = useCallback(({ viewableItems, changed, }) => {
+        var _a;
         if (isRotating)
             return;
-        const index = viewableItems[viewableItems.length - 1].index || 0;
+        const index = (_a = viewableItems[0].index) !== null && _a !== void 0 ? _a : 0;
         setCurrentIndex(index);
     }, []);
     const viewabilityConfigCallbackPairs = useRef([
